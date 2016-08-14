@@ -6,7 +6,7 @@ class TileMap:
     def __init__(self):
         self.tiles = {}
         print 'loading tmx now'
-        tmx_loader = TmxLoader('../assets/tmx/map.tmx')
+        tmx_loader = TmxLoader('assets/tmx/map.tmx')
 
         self.height = tmx_loader.data.height
         self.width = tmx_loader.data.width
@@ -22,14 +22,20 @@ class TileMap:
         for key in ordered_dict:
             print key
             for value in self.tiles[key]:
-                pass
                 print (value.type)
 
-    def get_tiles(position):
+    def get_tiles(self, position):
         return self.tiles[position]
 
-    def tiled_blocked(position):
-        for tile in self.tiles[position]:
-            if tile.type == TileType.BLOCKED:
-                return true
-        return false
+    def tile_blocked(self, position):
+        for tile in self.tiles.get(position):
+            if tile.type == "COLLISION":
+                return True
+        return False
+
+    def blocked(self, x, y):
+        if ((x < 0) or (y < 0) or (x > self.width - 1) or (y > self.height - 1)):
+            return True
+        else:
+            print 'coords %d, %d: blocked? %r' %(x, y, self.tile_blocked((x,y)))
+            return self.tile_blocked((x,y))

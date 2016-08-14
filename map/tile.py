@@ -9,7 +9,10 @@ class Tile:
     def __init__(self, coords, position, image, type_in):
         self.coords = coords
         self.position = position
-        self.image = self.scale_image(image)
+        if image is not None:
+            self.image = self.scale_image(image)
+        else:
+            self.image = None;
         self.type = type_in
 
     def scale_image(self, image):

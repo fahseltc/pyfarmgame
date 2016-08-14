@@ -1,13 +1,13 @@
-resolution = (1000, 800)
+resolution = (800, 800)
 TITLE = "Squares N' Numbers"
 
-TILE_SIZE = (64, 64)
-TILE_SCALING = 5
-WIDTH  = resolution[0] / TILE_SIZE[0]
-HEIGHT  = resolution[1] / TILE_SIZE[1]
+TILE_SIZE = (64, 64) # pixel dimensions in each visual tile
+TILE_SCALING = 4 # tiles are really 16x16, but x4 makes them 64 pixels each
+WIDTH  = 10 #resolution[0] / TILE_SIZE[0]
+HEIGHT  = 10 #resolution[1] / TILE_SIZE[1]
 
-EXTRA_WIDTH = resolution[0] % TILE_SIZE[0]
-EXTRA_HEIGHT  = resolution[1] % TILE_SIZE[1]
+EXTRA_WIDTH = resolution[0] - WIDTH * TILE_SIZE[0]
+EXTRA_HEIGHT = resolution[1] - HEIGHT * TILE_SIZE[1]
 
 
 # Colors

@@ -4,7 +4,9 @@ from entity import Entity
 from player import Player
 from energy import Energy
 from action import Action
-from tile_map import TileMap
+from map.tile_map import TileMap
+import CONSTANTS
+#from tile_map import TileMap
 
 from input_system import InputSystem
 from rendering_system import RenderingSystem
@@ -12,18 +14,20 @@ from rendering_system import RenderingSystem
 class GameLoop:
     #tile_map = TileMap()
     def __init__(self):
+        pygame.display.set_mode(CONSTANTS.resolution)
         print 'init gameloop'
-        self.tile_map = TileMap()
-        self.current_entity_index = 0
-        self.player = Player(4, 4, self)
-        self.entities = []
-        self.entities.append(Entity(1,2, self))
-        self.entities.append(Entity(4,2, self))
-        self.entities.append(Entity(6,1, self))
-        self.entities.append(self.player)
-
         self.renderer = RenderingSystem()
         self.input_system = InputSystem(self)
+        self.tile_map = TileMap()
+
+        self.current_entity_index = 0
+        self.player = Player(1, 7, self)
+        self.entities = []
+        #self.entities.append(Entity(1,3, self))
+        #self.entities.append(Entity(4,3, self))
+        self.entities.append(Entity(6,3, self))
+        self.entities.append(self.player)
+
 
     def start(self):
         self.update()
@@ -33,7 +37,8 @@ class GameLoop:
         keep_looping = True
 
         while keep_looping:
-            print 'loop: entity_index=%d energy: %d' % (self.current_entity_index, self.entities[self.current_entity_index].energy.amount)
+            #print 'extrawidth: %d, extraheight: %d' %(CONSTANTS.EXTRA_WIDTH, CONSTANTS.EXTRA_HEIGHT)
+            #print 'loop: entity_index=%d energy: %d' % (self.current_entity_index, self.entities[self.current_entity_index].energy.amount)
             self.input_system.controls()
             e = self.entities[self.current_entity_index]
 
@@ -52,7 +57,7 @@ class GameLoop:
                     e.clear_action()
                     pass # we can have failed actions return alternative actions to try again!
 
-            self.renderer.render(self.entities, self.tile_map)
+            self.renderer.render(self.entities, self.tile_map.tiles)
 
             pygame.display.flip()
             #clock.tick(60)

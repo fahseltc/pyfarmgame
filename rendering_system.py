@@ -8,13 +8,45 @@ from player import Player
 class RenderingSystem:
     def __init__(self):
         pygame.init()
-        self.screen = pygame.display.set_mode(CONSTANTS.resolution)
+        self.screen = pygame.display.get_surface()
 
         if pygame.font:
             self.font = pygame.font.Font(None, 24)
             self.bigfont = pygame.font.Font(None, 100)
 
     def render(self, entities, tile_map):
+        self.screen.fill(CONSTANTS.BLACK)
+
+        self.render_tmx(tile_map)
+        self.render_entities(entities)
+
+    def render_entities(self, entities):
+        for entity in entities:
+            color = CONSTANTS.RED
+            if (isinstance(entity, Player)):
+                color = CONSTANTS.WHITE
+                char = '@'
+                text = self.bigfont.render(char, 1, CONSTANTS.BLUE)
+                rect = self.make_rect(entity.x,entity.y)
+                textpos = text.get_rect(centerx=rect.x + 32, centery=rect.y + 32 - 2)
+                self.screen.blit(text, textpos)
+            else:
+                rect = self.make_rect(entity.x, entity.y)
+                #pygame.draw.rect(self.screen, color, rect, 0) rectangle
+                char = 'g'
+                text = self.bigfont.render(char, 1, CONSTANTS.GREEN)
+                rect = self.make_rect(entity.x,entity.y)
+                textpos = text.get_rect(centerx=rect.x + 32, centery=rect.y + 32 - 2)
+                self.screen.blit(text, textpos)
+
+    def render_tmx(self, tiles):
+        for key in tiles:
+            for tile in tiles[key]:
+                if tile.image is not None:
+                    self.screen.blit(tile.image, tile.position)
+
+
+    def render_old_ascii(self, entities, tile_map):
         self.screen.fill(CONSTANTS.BLACK)
 
         # Draw the map
@@ -78,3 +110,4 @@ class RenderingSystem:
 
     def coords_to_screen(self, x, y):
         return (x * CONSTANTS.TILE_SIZE[0] + (CONSTANTS.EXTRA_WIDTH / 2) + CONSTANTS.TILE_SIZE[0]/2, y * CONSTANTS.TILE_SIZE[1] + (CONSTANTS.EXTRA_HEIGHT / 2) + CONSTANTS.TILE_SIZE[1]/2)
+
