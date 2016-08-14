@@ -11,8 +11,8 @@ class RenderingSystem:
         self.screen = pygame.display.get_surface()
 
         if pygame.font:
-            self.font = pygame.font.Font(None, 24)
-            self.bigfont = pygame.font.Font(None, 100)
+            #self.font = pygame.font.Font(None, 16)
+            self.bigfont = pygame.font.Font(None, CONSTANTS.TILE_SIZE[0])
 
     def render(self, entities, tile_map):
         self.screen.fill(CONSTANTS.BLACK)
@@ -28,7 +28,7 @@ class RenderingSystem:
                 char = '@'
                 text = self.bigfont.render(char, 1, CONSTANTS.BLUE)
                 rect = self.make_rect(entity.x,entity.y)
-                textpos = text.get_rect(centerx=rect.x + 32, centery=rect.y + 32 - 2)
+                textpos = text.get_rect(centerx=rect.x + CONSTANTS.HALF_TILE_SIZE, centery=rect.y + CONSTANTS.HALF_TILE_SIZE - 2)
                 self.screen.blit(text, textpos)
             else:
                 rect = self.make_rect(entity.x, entity.y)
@@ -36,7 +36,7 @@ class RenderingSystem:
                 char = 'g'
                 text = self.bigfont.render(char, 1, CONSTANTS.GREEN)
                 rect = self.make_rect(entity.x,entity.y)
-                textpos = text.get_rect(centerx=rect.x + 32, centery=rect.y + 32 - 2)
+                textpos = text.get_rect(centerx=rect.x + CONSTANTS.HALF_TILE_SIZE, centery=rect.y + CONSTANTS.HALF_TILE_SIZE - 2)
                 self.screen.blit(text, textpos)
 
     def render_tmx(self, tiles):
