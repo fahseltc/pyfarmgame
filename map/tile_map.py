@@ -28,9 +28,12 @@ class TileMap:
         return self.tiles[position]
 
     def tile_blocked(self, position):
-        for tile in self.tiles.get(position):
-            if tile.type == "COLLISION":
-                return True
+        tiles_in_position = self.tiles.get(position)
+
+        if tiles_in_position is not None:
+            for tile in self.tiles.get(position):
+                if tile.type == "COLLISION":
+                    return True
         return False
 
     def blocked(self, x, y):
