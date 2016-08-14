@@ -10,7 +10,7 @@ from pytmx.util_pygame import load_pygame
 RESOLUTION = (800, 800)
 pygame.init()
 screen = pygame.display.set_mode(RESOLUTION)
-loader = TmxLoader('map.tmx')
+loader = TmxLoader('../assets/tmx/map.tmx')
 
 while True:
     screen.fill((0,0,0))
