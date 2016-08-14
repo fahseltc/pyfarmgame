@@ -2,6 +2,7 @@ resolution = (1000, 800)
 TITLE = "Squares N' Numbers"
 
 TILE_SIZE = (64, 64)
+TILE_SCALING = 5
 WIDTH  = resolution[0] / TILE_SIZE[0]
 HEIGHT  = resolution[1] / TILE_SIZE[1]
 

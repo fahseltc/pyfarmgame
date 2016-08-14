@@ -1,5 +1,6 @@
 import pygame
 import pyscroll
+from tile_map import TileMap
 from tmx_loader import TmxLoader
 from pytmx.util_pygame import load_pygame
 
@@ -10,12 +11,15 @@ from pytmx.util_pygame import load_pygame
 RESOLUTION = (800, 800)
 pygame.init()
 screen = pygame.display.set_mode(RESOLUTION)
-loader = TmxLoader('../assets/tmx/map.tmx')
+tilemap = TileMap()
 
-while True:
-    screen.fill((0,0,0))
 
-    for tile in loader.tiles:
-        screen.blit(tile.image, tile.position)
+#loader = TmxLoader('../assets/tmx/map.tmx')
 
-    pygame.display.flip()
+# while True:
+#     screen.fill((0,0,0))
+
+#     for tile in loader.tiles:
+#         screen.blit(tile.image, tile.position)
+
+#     pygame.display.flip()
