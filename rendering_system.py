@@ -1,4 +1,5 @@
 import CONSTANTS
+import GAME_GLOBALS
 import pygame
 from pygame.locals import *
 import utils
@@ -14,11 +15,11 @@ class RenderingSystem:
             #self.font = pygame.font.Font(None, 16)
             self.bigfont = pygame.font.Font(None, CONSTANTS.TILE_SIZE[0])
 
-    def render(self, entities, tile_map):
+    def render(self):
         self.screen.fill(CONSTANTS.BLACK)
 
-        self.render_tmx(tile_map)
-        self.render_entities(entities)
+        self.render_tmx(GAME_GLOBALS.tile_map.tiles)
+        self.render_entities(GAME_GLOBALS.entities)
 
     def render_entities(self, entities):
         for entity in entities:

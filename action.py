@@ -1,4 +1,5 @@
 import utils
+import GAME_GLOBALS
 from direction import Direction
 
 class Action:
@@ -16,9 +17,8 @@ class NothingAction(Action):
         return False
 
 class WalkAction(Action):
-    def __init__(self, entity, tile_map, direction):
+    def __init__(self, entity, direction):
         self.entity = entity
-        self.tile_map = tile_map
         self.direction = direction
 
     def perform(self):
@@ -26,7 +26,7 @@ class WalkAction(Action):
         future_x = self.entity.x + self.direction[0]
         future_y = self.entity.y + self.direction[1]
 
-        if not (self.tile_map.blocked(future_x, future_y)):
+        if not (GAME_GLOBALS.tile_map.blocked(future_x, future_y)):
             self.entity.x += self.direction[0]
             self.entity.y += self.direction[1]
             print 'entity pos (%d, %d)' % (self.entity.x, self.entity.y)
@@ -36,12 +36,12 @@ class WalkAction(Action):
             return False
 
 class WalkTowardsAction(Action):
-    def __init__(self, entity, tile_map, target):
+    def __init__(self, entity, target):
         self.entity = entity
-        self.tile_map = tile_map
         self.target = target
 
     def perfom(self):
+        print 'eh'
         shortest_distance = utils.grid_distance((entity.x, entity.y), (target.x, target.y))
 
         new_dist = move_distance(Direction.UP)
@@ -64,7 +64,7 @@ class WalkTowardsAction(Action):
             result = Direction.RIGHT
             shortest_distance = new_dist
 
-        action = WalkAction(self.entity, self.tile_map, result)
+        action = WalkAction(self.entity, GAME_GLOBALS.tile_map, result)
         return action.perform()
 
 

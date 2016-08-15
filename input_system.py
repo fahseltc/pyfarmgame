@@ -1,6 +1,6 @@
-
 import pygame
 from pygame.locals import *
+import GAME_GLOBALS
 
 from action import WalkAction
 from direction import Direction
@@ -48,10 +48,9 @@ class InputSystem:
                      self.walk(Direction.RIGHT)
                      no_event = False
 
-
                 # UTIL CONTROLS
                 if event.key == pygame.K_ESCAPE:
                     pygame.quit()
 
     def walk(self, direction):
-        self.game.player.set_next_action(WalkAction(self.game.player, self.game.tile_map, direction))
+        self.game.player.set_next_action(WalkAction(self.game.player, direction))
