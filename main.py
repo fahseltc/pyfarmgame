@@ -13,6 +13,4 @@ pygame.display.set_mode(CONSTANTS.resolution)
 GAME_GLOBALS.tile_map = TileMap()
 GAME_GLOBALS.entities = []
 gameloop = GameLoop()
-clock = pygame.time.Clock()
-
 gameloop.start()
