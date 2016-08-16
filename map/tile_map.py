@@ -6,7 +6,7 @@ class TileMap:
     def __init__(self):
         self.tiles = {}
         print 'loading tmx now'
-        tmx_loader = TmxLoader('assets/tmx/map.tmx')
+        tmx_loader = TmxLoader('assets/tmx/map5.tmx')
 
         self.height = tmx_loader.data.height
         self.width = tmx_loader.data.width
