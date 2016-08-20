@@ -1,7 +1,7 @@
 import utils
 import GAME_GLOBALS
 from direction import Direction
-
+# HEY FUCK YOU
 class Action:
     def __init__(self):
         pass
