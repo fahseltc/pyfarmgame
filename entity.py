@@ -24,8 +24,6 @@ class Entity:
         self.next_action = NothingAction()
 
     def determine_next_action(self):
-        #if self.next_action != NothingAction:
-        #    return
         val = randint(0,3)
         if (val == 0):
             self.next_action = WalkAction(self, Direction.UP)

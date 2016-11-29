@@ -5,7 +5,7 @@ import GAME_GLOBALS
 from map.tile_map import TileMap
 from game_loop import GameLoop
 
-os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (500,0)
+os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (500,100)
 
 pygame.init()
 pygame.display.set_caption(CONSTANTS.TITLE)

@@ -1,7 +1,7 @@
 import pygame
-from pytmx.util_pygame import load_pygame
 import sys
 sys.path.append('../')
+from pytmx.util_pygame import load_pygame
 import CONSTANTS
 from tile import Tile
 from tile_type import TileType

@@ -19,17 +19,18 @@ class GameLoop:
 
         self.current_entity_index = 0
         self.player = Player(1, 7, self)
-        #self.entities = []
-        GAME_GLOBALS.entities.append(Entity(1,3, self))
-        #self.entities.append(Entity(4,3, self))
-        #self.entities.append(Entity(6,3, self))
+        GAME_GLOBALS.entities.append(Entity(1,8, self))
+        GAME_GLOBALS.entities.append(Entity(1,9, self))
+        GAME_GLOBALS.entities.append(Entity(1,11, self))
+        GAME_GLOBALS.entities.append(Entity(1,12, self))
+        GAME_GLOBALS.entities.append(Entity(1,13, self))
         GAME_GLOBALS.entities.append(self.player)
 
 
     def start(self):
-        self.update()
+        self.loop()
 
-    def update(self):
+    def loop(self):
         clock = pygame.time.Clock()
         keep_looping = True
 
@@ -53,11 +54,8 @@ class GameLoop:
                 else:
                     e.clear_action()
                     pass # we can have failed actions return alternative actions to try again!
+            if self.current_entity_index == 0:
+                self.renderer.render()
 
-            self.renderer.render()
-
-            pygame.display.flip()
+                pygame.display.flip()
             #clock.tick(60)
-
-
-
